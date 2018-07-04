@@ -27,7 +27,10 @@ def shotClockViolation(imgPath):
     #print(im.shape)
     # prva koord je Y a druga X, X ide lepo sa leva na desno od 0.0, a y ide odozgo na dole 0,0 mu je gore !
 
-    crop_img = im[730:830, 1108:1215]
+    crop_img = im[690:810, 1900:2080]
+
+    
+    #### Slobodno bacanje !
 
     #crop_img = im[880:950, 1020:1110] #  - Poza1
     #crop_img = im[1000:1080, 1128:1280] # - ovo je sa 5:57 tura slika - Poza2
@@ -35,9 +38,18 @@ def shotClockViolation(imgPath):
     #crop_img = im[870:980, 1228:1420] #- ovo je za semaphoe four.. 3:09 ta tura slika - Poza4 - jedina mix poza
     #crop_img = im[693:760, 1170:1300]  # - poza 5
 
-    #plt.imshow(crop_img, interpolation='bicubic')
-    #plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-    #plt.show()
+
+    ### Desnih 45
+
+    #crop_img = im[580:680, 1910:1940]  - Poza1
+    #crop_img = im[690:760, 1935:2050] - Poza2
+    #crop_img = im[650:710, 1780:1910] - Poza3
+    #crop_img = im[570:690, 1880:2030] - Poza4
+    #crop_img = im[690:810, 1900:2080] - Poza5
+
+    plt.imshow(crop_img, interpolation='bicubic')
+    plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
+    plt.show()
 
     bilateral_filtered_image = cv2.bilateralFilter(crop_img, 5, 175, 175)
 
@@ -145,8 +157,6 @@ def checkBallHandContact(imgPath):
     print(highest_y)
     print(x_of_highest_y)
 
-
-
     plt.imshow(skin, interpolation='bicubic')
     plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
     plt.show()
@@ -156,11 +166,11 @@ def checkBallHandContact(imgPath):
 
 def testing():
 
-    img_dir = "../../MyDataset/Bacanje/Poza3"
+    img_dir = "../../MyDataset/Levih45/Poza1"
     data_path = os.path.join(img_dir, '*g')
     files = glob.glob(data_path)
     #print(len(files))
-    print(data_path)
+    #print(data_path)
     print(files)
     #data = []
     for f1 in files:
@@ -176,11 +186,11 @@ if __name__ == "__main__":
 
     print("Welcome to buzzer beater application :)\n\n")
 
-    #testing()
+    testing()
 
     path = "Dejan"# input("Insert relative image path for validation: ")
 
-    contact = checkBallHandContact(path)
+    contact = True#checkBallHandContact(path)
     violation = True# shotClockViolation(path)
 
     if contact is False:
