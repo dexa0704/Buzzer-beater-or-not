@@ -215,12 +215,13 @@ def checkOneShot(path, crop):
         return True
 
 
-def testProgramOnAllData(root):
+def testProgramOnAllData(root, method):
 
     '''
     Main function for testing application with all data.
 
     :param root: path to root folder with data set and all images
+    :param method: can be train and test. This is two mods of application, training on 70% data and test on other 30%
     :return: percentage of success
     '''
 
@@ -244,7 +245,19 @@ def testProgramOnAllData(root):
             print(dirs)
 
             folder_sign = dirs.split('-')[1]
+            folder_name = (dirs.split('-')[0]).split(os.sep)[-1]
             print(folder_sign)
+            print(folder_name)
+
+            if method == "train" and folder_name not in train_poses:
+
+                print("Folder not for training...")
+                continue
+
+            if method == "test" and folder_name not in test_poses:
+
+                print("Folder not for testing...")
+                continue
 
             if folder_sign == "Regularno":
 
@@ -273,7 +286,7 @@ def testProgramOnAllData(root):
 
                 number_images += 1
 
-                crop_coordinates = performCompatibleCrop(dirs)
+                crop_coordinates = performCompatibleCrop(dirs, method)
                 print(crop_coordinates)
 
                 validation = checkOneShot(image, crop_coordinates)
@@ -283,5 +296,5 @@ def testProgramOnAllData(root):
                     number_correct_solved += 1
 
     print("Correctly solved: "+str(number_correct_solved))
-    print("Whole data set contains "+str(number_images)+" images.")
+    print("This data set contains "+str(number_images)+" images.")
     return (number_correct_solved / number_images) * 100

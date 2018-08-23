@@ -1,6 +1,10 @@
 import glob
 import os
 
+train_poses = ["Poza1", "Poza2", "Poza3", "Poza4"]
+
+test_poses = ["Poza5", "Poza6", "Poza7"]
+
 # Slobodno bacanje !
 
 bacanje1_crop_img = [880, 950, 1020, 1110]  # - Poza1
@@ -64,7 +68,7 @@ def testingShotclockByPose():
         # print(f1)
 
 
-def performCompatibleCrop(dirs):
+def performCompatibleCrop(dirs, method):
 
     positions = dirs.split('\\')[-2]
     pose = dirs.split('\\')[-1].split('-')[0]
@@ -74,88 +78,104 @@ def performCompatibleCrop(dirs):
 
     if positions == "Bacanje":
 
-        '''
+        if method == "train":
 
-        if pose == "Poza1":
+            if pose == "Poza1":
 
-            return bacanje1_crop_img
+                return bacanje1_crop_img
 
-        if pose == "Poza2":
+            if pose == "Poza2":
 
-            return bacanje2_crop_img
+                return bacanje2_crop_img
 
-        if pose == "Poza3":
+            if pose == "Poza3":
 
-            return bacanje3_crop_img
+                return bacanje3_crop_img
 
-        if pose == "Poza4":
+            if pose == "Poza4":
 
-            return bacanje4_crop_img
+                return bacanje4_crop_img
 
-        if pose == "Poza5":
+            if pose == "Poza5":
 
-            return bacanje5_crop_img
+                return bacanje5_crop_img
 
-        '''
+            print("No pose registered...")
 
-        return bacanje_global
+        if method == "test":
+
+            return bacanje_global
+
+        print("No method registered...")
 
     elif positions == "Desnih45":
 
-        '''
+        if method == "train":
 
-        if pose == "Poza1":
+            if pose == "Poza1":
 
-            return desnih45_1_crop_img
+                return desnih45_1_crop_img
 
-        if pose == "Poza2":
+            if pose == "Poza2":
 
-            return desnih45_2_crop_img
+                return desnih45_2_crop_img
 
-        if pose == "Poza3":
+            if pose == "Poza3":
 
-            return desnih45_3_crop_img
+                return desnih45_3_crop_img
 
-        if pose == "Poza4":
+            if pose == "Poza4":
 
-            return desnih45_4_crop_img
+                return desnih45_4_crop_img
 
-        if pose == "Poza5":
+            if pose == "Poza5":
 
-            return desnih45_5_crop_img
-        '''
+                return desnih45_5_crop_img
 
-        return desnih45_global
+            print("No pose registered...")
+
+        if method == "test":
+
+            return desnih45_global
+
+        print("No method registered...")
 
     elif positions == "Levih45":
 
-        '''
+        if method == "train":
 
-        if pose == "Poza1":
+            if pose == "Poza1":
 
-            return levih45_1_crop_img
+                return levih45_1_crop_img
 
-        if pose == "Poza2":
+            if pose == "Poza2":
 
-            return levih45_2_crop_img
+                return levih45_2_crop_img
 
-        if pose == "Poza3":
+            if pose == "Poza3":
 
-            return levih45_3_crop_img
+                return levih45_3_crop_img
 
-        if pose == "Poza4":
+            if pose == "Poza4":
 
-            return levih45_4_crop_img
+                return levih45_4_crop_img
 
-        if pose == "Poza5":
+            if pose == "Poza5":
 
-            return levih45_5_crop_img
+                return levih45_5_crop_img
 
-        if pose == "Poza6":
-            return levih45_6_crop_img
+            if pose == "Poza6":
 
-        if pose == "Poza7":
-            return levih45_7_crop_img
+                return levih45_6_crop_img
 
-        '''
-        return levih45_global
+            if pose == "Poza7":
+
+                return levih45_7_crop_img
+
+            print("No pose registered...")
+
+        if method == "test":
+
+            return levih45_global
+
+        print("No method registered...")
